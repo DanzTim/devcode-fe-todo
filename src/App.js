@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ActivitiesList from './ActivitiesList';
 import './App.css';
 import Cookies from 'js-cookie';
 
 function App() {
-  console.log(Cookies.get('activity'));
   const [activity, setActivity] = useState([]);
+
+  useEffect(() => {
+    const itemsFromCookie = Cookies.get('activities');
+    if (itemsFromCookie) {
+      setActivity(JSON.parse(itemsFromCookie));
+    }
+  }, []);
+
   function handleAppend(newActivity) {
-    setActivity([...activity, newActivity]);
-    Cookies.set('activity',activity);
+    let newListActivities = [...activity, newActivity]
+    setActivity(newListActivities);
+    Cookies.set('activities', JSON.stringify(newListActivities));
   }
+
   return (
     <div className="App">
       <header className="App-header">
