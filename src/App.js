@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import ActivitiesList from './ActivitiesList';
-import Dashboard from './Dashboard';
 import './App.css';
+import Cookies from 'js-cookie';
 
 function App() {
+  console.log(Cookies.get('activity'));
   const [activity, setActivity] = useState([]);
   function handleAppend(newActivity) {
     setActivity([...activity, newActivity]);
+    Cookies.set('activity',activity);
   }
   return (
     <div className="App">
       <header className="App-header">
         TO DO LIST APP
       </header>
-      <div className='container'>
-        <Dashboard activity={activity} onAppend={handleAppend} />
-        <ActivitiesList activities={activity}/>
-      </div>
+        <ActivitiesList activities={activity} onAppend={handleAppend} />
     </div>
   );
 }

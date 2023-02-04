@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 function Activity({act}) {
   return (
-    <Card>
+    <Card key={act.id} >
         <CardTitle>
             {act.title}
         </CardTitle>
