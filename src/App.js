@@ -19,12 +19,18 @@ function App() {
     Cookies.set('activities', JSON.stringify(newListActivities));
   }
 
+  function handleRemove(id) {
+    let newListActivities = activity.filter(item => item.id !== id)
+    setActivity(newListActivities);
+    Cookies.set('activities', JSON.stringify(newListActivities));
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         TO DO LIST APP
       </header>
-        <ActivitiesList activities={activity} onAppend={handleAppend} />
+        <ActivitiesList activities={activity} onAppend={handleAppend} handleRemove={handleRemove}/>
     </div>
   );
 }
