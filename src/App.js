@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ActivitiesList from './ActivitiesList';
-import './App.css';
 import Dashboard from './Dashboard';
+import './App.css';
 
 function App() {
   const [activity, setActivity] = useState([]);
