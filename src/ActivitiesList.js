@@ -28,7 +28,7 @@ function ActivitiesList({ activities, onAppend, handleRemove }) {
 		);
 	}
 
-	function handleClick() {
+	function addActivity() {
 		let newActivity = {
 			id: uuidv4(),
 			title: 'New Activity',
@@ -41,7 +41,7 @@ function ActivitiesList({ activities, onAppend, handleRemove }) {
 		<div className="container">
 			<div className="activity">
 				<h1>Activity</h1>
-				<button onClick={handleClick}>+ Tambah</button>
+				<button onClick={addActivity}>+ Tambah</button>
 			</div>
 			<div className="list-activities">{list_activities}</div>
 		</div>

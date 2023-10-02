@@ -6,7 +6,7 @@ function Activity({act, onRemove}) {
   const navigate = useNavigate();
 
   return (
-    <Card key={act.id} onClick={navigate('/edit')}>
+    <Card onClick={() => {navigate(`/detail/${act.id}`)}}>
       <CardTitle>
         {act.title}
       </CardTitle>

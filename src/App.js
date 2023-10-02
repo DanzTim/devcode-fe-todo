@@ -2,13 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ActivitiesList from './ActivitiesList';
 import './App.css';
 import Cookies from 'js-cookie';
-import { Routes } from "react-router-dom";
-
-const NewPage = () => (
-  <div>
-    <h1>This is the new page</h1>
-  </div>
-);
+import { Route, Routes } from 'react-router-dom';
+import TodoList from './TodoList';
 
 function App() {
   const [activity, setActivity] = useState([]);
@@ -26,21 +21,37 @@ function App() {
     Cookies.set('activities', JSON.stringify(newListActivities));
   }
 
-  function handleRemove(id) {
+  function removeActivity(id) {
     let newListActivities = activity.filter(item => item.id !== id)
     setActivity(newListActivities);
     Cookies.set('activities', JSON.stringify(newListActivities));
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        TO DO LIST APP
-      </header>
-        <Routes path="/new-page" component={NewPage} />
-        <ActivitiesList activities={activity} onAppend={handleAppend} handleRemove={handleRemove}/>
-    </div>
-  );
+		<div className="App">
+			<header className="App-header">TO DO LIST APP</header>
+			<Routes>
+				<Route
+					path="/"
+					element={
+						<ActivitiesList
+							activities={activity}
+							onAppend={handleAppend}
+							handleRemove={removeActivity}
+						/>
+					}
+				/>
+				<Route
+					path="/detail/:param"
+					element={
+						<TodoList
+							data={activity}
+						/>
+					}
+				/>
+			</Routes>
+		</div>
+	);
 }
 
 export default App;
