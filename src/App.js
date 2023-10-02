@@ -21,7 +21,9 @@ function App() {
     Cookies.set('activities', JSON.stringify(newListActivities));
   }
 
-  function removeActivity(id) {
+  function removeActivity(e, id) {
+    e.stopPropagation();
+		e.nativeEvent.stopImmediatePropagation();
     let newListActivities = activity.filter(item => item.id !== id)
     setActivity(newListActivities);
     Cookies.set('activities', JSON.stringify(newListActivities));
