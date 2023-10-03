@@ -36,8 +36,8 @@ function TodoList({ data, todos, onAppend, handleRemove }) {
 			<div className="activity">
 				<BackButton className="fa fa-chevron-left"></BackButton>
 				<h1>{activity.title}</h1>
-				<RenameButton />
-				<SortButton />
+				<RenameButton className="fa fa-pencil" />
+				<SortButton className="fa-solid fa-arrow-up-wide-short" />
 				<button onClick={togglePopup}>+ Tambah</button>
 				{showPopup && <TodoForm onClose={togglePopup} onAppend={onAppend} />}
 				<div className="list-activities">{list_todos}</div>
@@ -50,7 +50,17 @@ export default TodoList;
 
 const BackButton = styled.i`
 	cursor: pointer;
+	padding-right: 1rem;
 	font-size: 26px;
 `;
-const RenameButton = styled.div``;
-const SortButton = styled.div``;
+const RenameButton = styled.i`
+	cursor: pointer;
+	padding: 1rem;
+	font-size: 26px;
+`;
+const SortButton = styled.i`
+	cursor: pointer;
+	font-size: 26px;
+	padding: 1rem;
+	margin-inline-start: auto;
+`;
