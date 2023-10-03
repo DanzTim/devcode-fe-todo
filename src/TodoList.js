@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Todo from './Todo';
 import TodoForm from './TodoForm';
 import styled from 'styled-components';
 
 function TodoList({ data, todos, onAppend, handleRemove }) {
+  const navigate = useNavigate();
 	let params = useParams();
 	let activity = data.find((act) => {
 		return act.id === params.param;
@@ -34,7 +35,12 @@ function TodoList({ data, todos, onAppend, handleRemove }) {
 	return (
 		<div className="container">
 			<div className="activity">
-				<BackButton className="fa fa-chevron-left"></BackButton>
+				<BackButton
+					className="fa fa-chevron-left"
+					onClick={() => {
+						navigate('/');
+					}}
+				/>
 				<h1>{activity.title}</h1>
 				<RenameButton className="fa fa-pencil" />
 				<SortButton className="fa-solid fa-arrow-up-wide-short" />
