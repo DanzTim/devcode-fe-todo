@@ -23,6 +23,7 @@ function Activity({act, onRemove}) {
 export default Activity;
 
 const Card = styled.div`
+  cursor: pointer;
   background-color: white;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;

@@ -7,12 +7,17 @@ import TodoList from './TodoList';
 
 function App() {
   const [activity, setActivity] = useState([]);
+  const [todo, setTodo] = useState([]);
 
   useEffect(() => {
     const itemsFromCookie = Cookies.get('activities');
     if (itemsFromCookie) {
       setActivity(JSON.parse(itemsFromCookie));
     }
+		const todosFromCookie = Cookies.get('todos');
+		if (todosFromCookie) {
+			setTodo(JSON.parse(todosFromCookie));
+		}
   }, []);
 
   function handleAppend(newActivity) {
@@ -28,6 +33,12 @@ function App() {
     setActivity(newListActivities);
     Cookies.set('activities', JSON.stringify(newListActivities));
   }
+
+	function removeTodo(id) {
+		let newTodos = todo.filter((item) => item.id !== id);
+		setTodo(newTodos);
+		Cookies.set('todos', JSON.stringify(newTodos));
+	}
 
   return (
 		<div className="App">
@@ -48,6 +59,9 @@ function App() {
 					element={
 						<TodoList
 							data={activity}
+							todos={todo}
+							onAppend={handleAppend}
+							handleRemove={removeTodo}
 						/>
 					}
 				/>
