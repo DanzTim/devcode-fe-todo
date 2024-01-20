@@ -20,11 +20,22 @@ function App() {
 		}
   }, []);
 
-  function handleAppend(newActivity) {
+  function addActivity(newActivity) {
     let newListActivities = [...activity, newActivity]
     setActivity(newListActivities);
     Cookies.set('activities', JSON.stringify(newListActivities));
   }
+
+	function changeActivityTitle(id, title) {
+		let newListActivities = activity.map((item) => {
+			if (item.id === id) {
+				item.title = title;
+			}
+			return item;
+		});
+		setActivity(newListActivities);
+		Cookies.set('activities', JSON.stringify(newListActivities));
+	}
 
   function removeActivity(e, id) {
     e.stopPropagation();
@@ -40,6 +51,12 @@ function App() {
 		Cookies.set('todos', JSON.stringify(newTodos));
 	}
 
+	function addTodo(newTodo) {
+		let todoList = [...todo, newTodo];
+		setTodo(todoList);
+		Cookies.set('todos', JSON.stringify(todoList));
+	}
+
   return (
 		<div className="App">
 			<header className="App-header">TO DO LIST APP</header>
@@ -49,7 +66,7 @@ function App() {
 					element={
 						<ActivitiesList
 							activities={activity}
-							onAppend={handleAppend}
+							onAppend={addActivity}
 							handleRemove={removeActivity}
 						/>
 					}
@@ -60,8 +77,9 @@ function App() {
 						<TodoList
 							data={activity}
 							todos={todo}
-							onAppend={handleAppend}
+							onAppend={addTodo}
 							handleRemove={removeTodo}
+							titleChange={changeActivityTitle}
 						/>
 					}
 				/>
