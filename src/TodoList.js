@@ -14,7 +14,7 @@ function TodoList({ data, todos, onAppend, handleRemove, titleChange }) {
 
 	let list_todos = todos
 		.filter((item) => {
-			return item.activity_id === activity.id;
+			return item.activity_group_id === activity.id;
 		})
 		.map((item) => {
 			return <Todo key={item.id} todo={item} onRemove={handleRemove} />;
@@ -83,8 +83,13 @@ function TodoList({ data, todos, onAppend, handleRemove, titleChange }) {
 				<RenameButton className="fa fa-pencil" onClick={toggleEditing} />
 				<SortButton className="fa-solid fa-arrow-up-wide-short" />
 				<button onClick={togglePopup}>+ Tambah</button>
-				{showPopup && <TodoForm onClose={togglePopup} onAppend={onAppend} />}
-				<div className="list-activities">{list_todos}</div>
+				{showPopup && (
+					<TodoForm
+						onClose={togglePopup}
+						onAppend={onAppend}
+					/>
+				)}
+				<div className="list-todos">{list_todos}</div>
 			</div>
 		</div>
 	);

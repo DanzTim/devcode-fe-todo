@@ -48,6 +48,12 @@
   padding-top: 1em;
 }
 
+.list-todos {
+  display: block;
+  width: 100%;
+  padding-top: 1em;
+}
+
 button {
   background-color: #16abf8;
   border-style: none;
@@ -64,4 +70,8 @@ button:hover {
 
 .close {
   cursor: pointer;
+}
+
+label {
+  display: block;
 }
