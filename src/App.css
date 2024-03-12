@@ -1,10 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+@keyframes easyin {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    transform: translate(20%, 0%);
+  }
+}
 
 * {
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
-
 
 .App{
   background-color: #f4f4f4;
@@ -70,8 +81,58 @@ button:hover {
 
 .close {
   cursor: pointer;
+  font-size: xx-large;
+  padding: 10px;
+  opacity: 0.8;
 }
 
 label {
   display: block;
+}
+
+.visible {
+  visibility: visible;
+  display: flex;
+}
+
+.invisible {
+  display: none;
+}
+
+.popup-container {
+  flex-direction: column;
+  position: fixed;
+  padding: 0px 20px 20px 20px;
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  width: 600px;
+  height: auto;
+  z-index: 10;
+  /* animation: easyin 0.4s ease 0s 1 normal forwards; */
+  right: 50%;
+  transform: translate(50%, 0);
+  /* transition: 0.4s ease; */
+}
+
+.page-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.popup-content input {
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 400;
 }

@@ -83,12 +83,12 @@ function TodoList({ data, todos, onAppend, handleRemove, titleChange }) {
 				<RenameButton className="fa fa-pencil" onClick={toggleEditing} />
 				<SortButton className="fa-solid fa-arrow-up-wide-short" />
 				<button onClick={togglePopup}>+ Tambah</button>
-				{showPopup && (
-					<TodoForm
-						onClose={togglePopup}
-						onAppend={onAppend}
-					/>
-				)}
+				<div className={`${showPopup ? "page-mask" : ""}`}></div>
+				<TodoForm
+					visible={showPopup}
+					onClose={togglePopup}
+					onAppend={onAppend}
+				/>
 				<div className="list-todos">{list_todos}</div>
 			</div>
 		</div>
@@ -113,6 +113,7 @@ const SortButton = styled.i`
 	font-size: 24px;
 	padding: 1rem;
 	margin-inline-start: auto;
+	opacity: 0.5;
 `;
 const InputTitleTextBox = styled.input`
 	font-size: 2em;
