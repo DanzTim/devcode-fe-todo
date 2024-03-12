@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 
-const TodoForm = ({ visible, onClose, onAppend }) => {
-	let params = useParams();
-
+export const EditTodoForm = ({ todo, visible, onClose, onEdit }) => {
 	const [formData, setFormData] = useState({
-		name: '',
-		activity_group_id: params.param,
-		priority: 'very-high',
+		name: todo.name,
+		priority: todo.priority,
 	});
 
 	const handleChange = e => {
@@ -18,7 +13,7 @@ const TodoForm = ({ visible, onClose, onAppend }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		onAppend({ id: uuidv4(), ...formData, status: false, created_at: new Date() });
+		onEdit({ id: todo.id, ...formData });
 		onClose();
 	};
 
@@ -87,5 +82,3 @@ const TodoForm = ({ visible, onClose, onAppend }) => {
 		</div>
 	);
 };
-
-export default TodoForm;

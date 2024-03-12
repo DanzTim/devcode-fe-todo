@@ -51,6 +51,18 @@ function App() {
 		Cookies.set('todos', JSON.stringify(newTodos));
 	}
 
+	function editTodo({id, name, priority}) {
+		let editedTodo = todo.map((item) => {
+			if(item.id === id) {
+				item.name = name;
+				item.priority = priority;
+			}
+			return item;
+		});
+		setTodo(editedTodo);
+		Cookies.set('todos', JSON.stringify(editedTodo));
+	}
+
 	function addTodo(newTodo) {
 		let todoList = [...todo, newTodo];
 		setTodo(todoList);
@@ -79,6 +91,7 @@ function App() {
 							todos={todo}
 							onAppend={addTodo}
 							handleRemove={removeTodo}
+							editTodo={editTodo}
 							titleChange={changeActivityTitle}
 						/>
 					}

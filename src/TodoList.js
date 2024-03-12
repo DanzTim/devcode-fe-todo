@@ -5,7 +5,7 @@ import Todo from './Todo';
 import TodoForm from './TodoForm';
 import styled from 'styled-components';
 
-function TodoList({ data, todos, onAppend, handleRemove, titleChange }) {
+function TodoList({ data, todos, onAppend, handleRemove, titleChange, editTodo }) {
 	const navigate = useNavigate();
 	let params = useParams();
 	let activity = data.find((act) => {
@@ -17,7 +17,7 @@ function TodoList({ data, todos, onAppend, handleRemove, titleChange }) {
 			return item.activity_group_id === activity.id;
 		})
 		.map((item) => {
-			return <Todo key={item.id} todo={item} onRemove={handleRemove} />;
+			return <Todo key={item.id} todo={item} onRemove={handleRemove} editTodo={editTodo}/>;
 		});
 
 	const [isEditing, setIsEditing] = useState(false);
