@@ -41,7 +41,7 @@ function ActivitiesList({ activities, onAppend, handleRemove }) {
 		<div className="container">
 			<div className="activity">
 				<h1>Activity</h1>
-				<button onClick={addActivity}>+ Tambah</button>
+				<button onClick={addActivity}>+ Add Activity</button>
 				<div className="list-activities">{list_activities}</div>
 			</div>
 		</div>

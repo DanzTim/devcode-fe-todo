@@ -25,7 +25,7 @@ export const EditTodoForm = ({ todo, visible, onClose, onEdit }) => {
 			`}
 		>
 			<div className="modal-header">
-				<h2 style={{ marginBottom: '10px' }}>Tambah List Item</h2>
+				<h2 style={{ marginBottom: '10px' }}>Add List Item</h2>
 				<div className="close" onClick={onClose}>
 					&times;
 				</div>
@@ -33,12 +33,12 @@ export const EditTodoForm = ({ todo, visible, onClose, onEdit }) => {
 			<div className="popup-content">
 				<form style={{ marginLeft: '5px' }}>
 					<label style={{ marginTop: '20px', marginBottom: '10px' }}>
-						Nama:
+						Name:
 					</label>
 					<input
 						type="text"
 						name="name"
-						placeholder="Nama Item"
+						placeholder="Item Name"
 						value={formData.name}
 						onChange={(e) => handleChange(e)}
 						style={{ marginBottom: '20px', width: '100%' }}
@@ -76,7 +76,7 @@ export const EditTodoForm = ({ todo, visible, onClose, onEdit }) => {
 					id="AddFormSubmit"
 					onClick={handleSubmit}
 				>
-					Simpan
+					Save
 				</button>
 			</div>
 		</div>

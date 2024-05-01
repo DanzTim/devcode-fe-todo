@@ -82,7 +82,7 @@ function TodoList({ data, todos, onAppend, handleRemove, titleChange, editTodo }
 				)}
 				<RenameButton className="fa fa-pencil" onClick={toggleEditing} />
 				<SortButton className="fa-solid fa-arrow-up-wide-short" />
-				<button onClick={togglePopup}>+ Tambah</button>
+				<button onClick={togglePopup}>+ Add Item</button>
 				<div className={`${showPopup ? "page-mask" : ""}`}></div>
 				<TodoForm
 					visible={showPopup}
