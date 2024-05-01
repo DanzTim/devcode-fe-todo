@@ -1,6 +1,7 @@
 import React from 'react';
 import Activity from './Activity';
 import { v4 as uuidv4 } from 'uuid';
+import emptyActivity from './assets/images/vector-new-activity.webp';
 
 function getCurrentDate() {
 	let newDate = new Date();
@@ -20,11 +21,7 @@ function ActivitiesList({ activities, onAppend, handleRemove }) {
 
 	if (!list_activities.length) {
 		list_activities = (
-			<img
-				className="image-div"
-				src="./vector-new-activity.webp"
-				alt="New Activity"
-			></img>
+			<img className="image-div" src={emptyActivity} alt="New Activity"></img>
 		);
 	}
 

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Todo from './Todo';
 import TodoForm from './TodoForm';
 import styled from 'styled-components';
+import emptyItem from './assets/images/vector-new-todo.webp';
 
 function TodoList({ data, todos, onAppend, handleRemove, titleChange, editTodo }) {
 	const navigate = useNavigate();
@@ -44,11 +45,7 @@ function TodoList({ data, todos, onAppend, handleRemove, titleChange, editTodo }
 
 	if (!list_todos.length) {
 		list_todos = (
-			<img
-				className="image-div"
-				src="./vector-new-todo.webp"
-				alt="New Todo"
-			></img>
+			<img className="image-div" src={emptyItem} alt="New Todo"></img>
 		);
 	}
 
