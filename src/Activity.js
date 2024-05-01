@@ -59,4 +59,6 @@ const DeleteButton = styled.button`
   border: 0!important;
   background: transparent;
   cursor: pointer;
+  padding: 0%;
+  padding-top: 5px;
 `

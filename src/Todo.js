@@ -2,19 +2,28 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { EditTodoForm } from './EditTodoForm';
 
-export default function Todo({todo, onRemove, editTodo}) {
+export default function Todo({todo, onRemove, editTodo, checkTodo}) {
 	const [showPopup, setShowPopup] = useState(false);
 	const togglePopup = () => {
 		setShowPopup(!showPopup);
 	};
+
+	const handleCheck = (e) => {
+		checkTodo({ id: todo.id });
+	};
+
   return (
 		<Card key={todo.id}>
 			<LeftCard>
-				<Checkbox type='checkbox'></Checkbox>
+				<Checkbox
+					type="checkbox"
+					checked={todo.status}
+					onChange={handleCheck}
+				></Checkbox>
 				<Priority>{todo.priority}</Priority>
-				<Title>{todo.name}</Title>
-				<RenameButton className="fa fa-pencil" onClick={togglePopup}/>
-				<div className={`${showPopup ? "page-mask" : ""}`}></div>
+				<Title style={todo.status ? { textDecoration: "line-through", color: "GrayText" } : { }}>{todo.name}</Title>
+				<RenameButton className="fa fa-pencil" onClick={togglePopup} />
+				<div className={`${showPopup ? 'page-mask' : ''}`}></div>
 				<EditTodoForm
 					todo={todo}
 					visible={showPopup}
@@ -26,7 +35,7 @@ export default function Todo({todo, onRemove, editTodo}) {
 				<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7H20" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path><path d="M10 11V17" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path><path d="M14 11V17" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path><path d="M5 7L6 19C6 19.5304 6.21071 20.0391 6.58579 20.4142C6.96086 20.7893 7.46957 21 8 21H16C16.5304 21 17.0391 20.7893 17.4142 20.4142C17.7893 20.0391 18 19.5304 18 19L19 7" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path><path d="M9 7V4C9 3.73478 9.10536 3.48043 9.29289 3.29289C9.48043 3.10536 9.73478 3 10 3H14C14.2652 3 14.5196 3.10536 14.7071 3.29289C14.8946 3.48043 15 3.73478 15 4V7" stroke="#888888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>
 			</DeleteButton>
 		</Card>
-  );
+	);
 }
 
 const Checkbox = styled.input`
@@ -57,15 +66,13 @@ const Card = styled.div`
 	border-radius: 12px;
 	display: flex;
 	height: 29px;
-	padding: 27px;
+	padding: 37px;
 	margin-bottom: 15px;
 	justify-content: space-between;
 	align-items: center;
 `;
 
 const Title = styled.span`
-  font-weight: 700;
-  font-size: 18px;
   text-overflow: ellipsis;
 `
 

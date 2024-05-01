@@ -6,7 +6,15 @@ import TodoForm from './TodoForm';
 import styled from 'styled-components';
 import emptyItem from './assets/images/vector-new-todo.webp';
 
-function TodoList({ data, todos, onAppend, handleRemove, titleChange, editTodo }) {
+function TodoList({
+	data,
+	todos,
+	onAppend,
+	handleRemove,
+	titleChange,
+	editTodo,
+	checkTodo,
+}) {
 	const navigate = useNavigate();
 	let params = useParams();
 	let activity = data.find((act) => {
@@ -18,7 +26,15 @@ function TodoList({ data, todos, onAppend, handleRemove, titleChange, editTodo }
 			return item.activity_group_id === activity.id;
 		})
 		.map((item) => {
-			return <Todo key={item.id} todo={item} onRemove={handleRemove} editTodo={editTodo}/>;
+			return (
+				<Todo
+					key={item.id}
+					todo={item}
+					onRemove={handleRemove}
+					editTodo={editTodo}
+					checkTodo={checkTodo}
+				/>
+			);
 		});
 
 	const [isEditing, setIsEditing] = useState(false);
@@ -50,11 +66,11 @@ function TodoList({ data, todos, onAppend, handleRemove, titleChange, editTodo }
 	}
 
 	const handleEnter = (e) => {
-    if (e.key === 'Enter') {
-      setIsEditing(false);
+		if (e.key === 'Enter') {
+			setIsEditing(false);
 			titleChange(activity.id, title);
-    }
-  };
+		}
+	};
 
 	return (
 		<div className="container">
@@ -80,7 +96,7 @@ function TodoList({ data, todos, onAppend, handleRemove, titleChange, editTodo }
 				<RenameButton className="fa fa-pencil" onClick={toggleEditing} />
 				<SortButton className="fa-solid fa-arrow-up-wide-short" />
 				<button onClick={togglePopup}>+ Add Item</button>
-				<div className={`${showPopup ? "page-mask" : ""}`}></div>
+				<div className={`${showPopup ? 'page-mask' : ''}`}></div>
 				<TodoForm
 					visible={showPopup}
 					onClose={togglePopup}

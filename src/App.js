@@ -69,6 +69,18 @@ function App() {
 		Cookies.set('todos', JSON.stringify(todoList));
 	}
 
+	function checkTodo({ id }) {
+		let editedTodo = todo.map((item) => {
+			if (item.id === id) {
+				console.log(item);
+				item.status = !item.status;
+			}
+			return item;
+		});
+		setTodo(editedTodo);
+		Cookies.set('todos', JSON.stringify(editedTodo));
+	}
+
   return (
 		<div className="App">
 			<header className="App-header">TO DO LIST APP</header>
@@ -93,6 +105,7 @@ function App() {
 							handleRemove={removeTodo}
 							editTodo={editTodo}
 							titleChange={changeActivityTitle}
+							checkTodo={checkTodo}
 						/>
 					}
 				/>
